@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:form="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <form : form action="addUser" modelAttribute="user">
+            <input type="hidden" name="id" value="${user.id}">
+            <label for="name">name</label>
+            <input type="text" name="name" id="name">
+            <label for="surname">surname</label>
+            <input type="text" name="surname" id="surname">
+            <label for="age">age</label>
+            <input type="text" name="age" id="age">
+            <input type="submit" value="Add user">
+        </form>
+        <a href="/users">Return</a>
+</body>
+</html>
