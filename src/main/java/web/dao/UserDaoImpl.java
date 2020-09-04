@@ -29,7 +29,6 @@ public class UserDaoImpl implements UserDao{
     @Override
     public void add(User user) {
         EntityManager em = entityManagerFactory.createEntityManager();
-
         em.getTransaction().begin();
         em.persist(user);
         em.getTransaction().commit();

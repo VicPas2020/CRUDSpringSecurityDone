@@ -4,13 +4,22 @@
     <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="6">
+          <list size="15">
             <item index="0" class="java.lang.String" itemvalue="th:text" />
             <item index="1" class="java.lang.String" itemvalue="th:each" />
             <item index="2" class="java.lang.String" itemvalue="form" />
             <item index="3" class="java.lang.String" itemvalue=":" />
             <item index="4" class="java.lang.String" itemvalue="modelattribute" />
             <item index="5" class="java.lang.String" itemvalue="path" />
+            <item index="6" class="java.lang.String" itemvalue="th:href" />
+            <item index="7" class="java.lang.String" itemvalue="th:action" />
+            <item index="8" class="java.lang.String" itemvalue="th:object" />
+            <item index="9" class="java.lang.String" itemvalue="th:type" />
+            <item index="10" class="java.lang.String" itemvalue="th:field" />
+            <item index="11" class="java.lang.String" itemvalue="th:value" />
+            <item index="12" class="java.lang.String" itemvalue="utf-8" />
+            <item index="13" class="java.lang.String" itemvalue="th:name" />
+            <item index="14" class="java.lang.String" itemvalue="th:method" />
           </list>
         </value>
       </option>
@@ -19,7 +28,7 @@
     <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="12">
+          <list size="13">
             <item index="0" class="java.lang.String" itemvalue="nobr" />
             <item index="1" class="java.lang.String" itemvalue="noembed" />
             <item index="2" class="java.lang.String" itemvalue="comment" />
@@ -32,6 +41,7 @@
             <item index="9" class="java.lang.String" itemvalue="form:label" />
             <item index="10" class="java.lang.String" itemvalue="form:input" />
             <item index="11" class="java.lang.String" itemvalue="form:form" />
+            <item index="12" class="java.lang.String" itemvalue="p" />
           </list>
         </value>
       </option>

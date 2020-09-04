@@ -1,0 +1,19 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en" xmlns:form="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <form th:action="@{/addUser}" th:object="${user}" th:method="post">
+            <p>name: <input type="text" th:field="*{name}"/></p>
+            <p>surname: <input type="text" th:field="*{surname}"/></p>
+            <p>age: <input type="number" th:field="*{age}"/></p>
+            <p><input type="submit" value="Add User"/></p>
+        </form>
+        <a href="/users">Return</a>
+</body>
+</html>
