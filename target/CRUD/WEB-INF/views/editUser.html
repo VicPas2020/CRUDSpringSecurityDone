@@ -5,20 +5,15 @@
     <title>Title</title>
 </head>
 <body>
-<div align="center">
     <h1>Edit User</h1>
-    <form th:action="@{/edit}" th:object="${editUser}" method="post">
-        <table>
-            <!--<tr><p>Id: <input th:type="number" th:value="*{id}"></p></tr>-->
-            <tr><p>First_Name: <input th:type="text" th:field="*{firstName}"></p></tr>
-            <tr><p>Last_Name: <input th:type="text" th:field="*{lastName}"></p></tr>
-            <tr><p>Age: <input th:type="number" th:field="*{age}"></p></tr>
-            <tr><p>Email: <input th:type="text" th:field="*{email}"></p></tr>
-            <tr><p>Action: <input th:type="submit" th:value="Submit"></p></tr>
-        </table>
+    <form th:action="@{/edit}" th:object="${user}" method="post">
+        <p><input th:type="hidden" th:field="*{id}"/></p>
+        <p>name: <input type="text" th:field="*{name}"/></p>
+        <p>surname: <input type="text" th:field="*{surname}"/></p>
+        <p>age: <input type="number" th:field="*{age}"/></p>
+        <p><input type="submit" value="Edit User"/></p>
     </form>
-    <a th:href="@{/}">Return</a>
-</div>
+    <a th:href="@{/users}">Return</a>
 
 </body>
 </html>

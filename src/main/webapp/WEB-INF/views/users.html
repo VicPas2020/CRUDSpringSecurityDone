@@ -22,13 +22,13 @@
         <td th:text="${user.surname}">surname</td>
         <td th:text="${user.age}">age</td>
         <td>
-            <a href="/edit/${user.id}">edit</a>
-            <a href="/delete/${user.id}">delete</a>
+            <a th:href="@{'edit/' + ${user.id}}">edit</a>
+            <a th:href="@{'delete/' + ${user.id}}">delete</a>
         </td>
     </tr>
     </tbody>
 </table>
 
-<a href="/addUser">Add User</a>
+<a th:href="@{/addUser}">Add User</a>
 </body>
 </html>

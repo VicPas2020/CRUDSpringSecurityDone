@@ -1,5 +1,6 @@
 package web.dao;
 
+import org.hibernate.annotations.SelectBeforeUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import web.model.User;
@@ -40,7 +41,7 @@ public class UserDaoImpl implements UserDao{
         EntityManager em = entityManagerFactory.createEntityManager();
 
         em.getTransaction().begin();
-        em.remove(user);
+        em.remove(em.contains(user) ? user : em.merge(user));
         em.getTransaction().commit();
         em.close();
     }
