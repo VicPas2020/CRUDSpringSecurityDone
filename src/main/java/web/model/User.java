@@ -31,6 +31,7 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "roles")
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
