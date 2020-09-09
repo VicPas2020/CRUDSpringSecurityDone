@@ -8,12 +8,12 @@
     <title>Title</title>
 </head>
 <body>
-        <form th:action="@{/addUser}" th:object="${user}" th:method="post">
+        <form th:action="@{/admin/addUser}" th:object="${user}" th:method="post">
             <p>name: <input type="text" th:field="*{name}"/></p>
             <p>surname: <input type="text" th:field="*{surname}"/></p>
             <p>age: <input type="number" th:field="*{age}"/></p>
             <p><input type="submit" value="Add User"/></p>
         </form>
-        <a th:href="@{/users}">Return</a>
+        <a th:href="@{/admin/users}">Return</a>
 </body>
 </html>

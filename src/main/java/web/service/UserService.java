@@ -10,4 +10,5 @@ public interface UserService {
     void delete(User user);
     void edit(User user);
     User getById(int id);
+    User fingByUserName(String username);
 }

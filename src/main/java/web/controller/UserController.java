@@ -9,6 +9,7 @@ import web.service.UserService;
 import java.util.List;
 
 @Controller
+@RequestMapping("/admin")
 public class UserController {
     private UserService userService;
 
@@ -33,7 +34,7 @@ public class UserController {
         return "addUser";
     }
 
-    @PostMapping("/addUser")
+    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
     public String addUser(@ModelAttribute("user") User user) {
         userService.add(user);
         return "redirect:/users";

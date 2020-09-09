@@ -42,4 +42,11 @@ public class UserDaoImpl implements UserDao{
 
         return user;
     }
+
+    @Override
+    public User fingByUserName(String username) {
+        User user = em.find(User.class, username);
+
+        return user;
+    }
 }
