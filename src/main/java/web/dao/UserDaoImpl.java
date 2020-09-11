@@ -1,11 +1,9 @@
 package web.dao;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import web.model.User;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
@@ -37,7 +35,7 @@ public class UserDaoImpl implements UserDao{
     }
 
     @Override
-    public User getById(int id) {
+    public User getById(Long id) {
         User user = em.find(User.class, id);
 
         return user;
@@ -45,8 +43,8 @@ public class UserDaoImpl implements UserDao{
 
     @Override
     public User fingByUserName(String username) {
-        User user = em.find(User.class, username);
 
-        return user;
+        TypedQuery<User> query = em.createQuery("from User u where u.username= :username", User.class);
+        return query.setParameter("username", username).getSingleResult();
     }
 }

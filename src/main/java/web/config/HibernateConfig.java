@@ -19,7 +19,7 @@ import java.util.Properties;
 @Configuration
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
-@ComponentScan(value = "web")
+//@ComponentScan(value = "web")
 public class HibernateConfig {
 
     @Autowired

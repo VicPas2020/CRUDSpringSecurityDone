@@ -1,8 +1,9 @@
-package web.dao;
+package web.service;
 
 import web.model.Role;
 
-public interface RoleDao {
+public interface RoleService {
 
     Role findRoleByRoleName(String role);
+
 }

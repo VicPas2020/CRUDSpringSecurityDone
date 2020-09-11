@@ -8,7 +8,7 @@ import javax.servlet.Filter;
 public class WebAppInitialiser extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{HibernateConfig.class};
+        return new Class[]{SecurityConfig.class};
     }
 
     @Override
