@@ -8,6 +8,7 @@
     <title>Title</title>
 </head>
 <body>
+<a th:href="@{/logout}">LOGOUT</a>
         <form th:action="@{/admin/addUser}" th:object="${user}" th:method="post">
             <p>name: <input type="text" th:field="*{name}"/></p>
             <p>surname: <input type="text" th:field="*{surname}"/></p>
