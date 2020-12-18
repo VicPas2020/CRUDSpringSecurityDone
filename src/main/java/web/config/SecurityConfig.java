@@ -22,6 +22,8 @@ import web.service.UserDetailsServiceImpl;
         "web.config",
         "web.service",
         "web.dao"})
+
+//@ComponentScan("web")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -30,14 +32,46 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private LoginSuccessHandler successHandler;
 
+
+//    @Autowired
+//    public void configureInMemoryAuthentication(AuthenticationManagerBuilder auth) throws Exception
+//    {
+//        auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN");
+////        auth.inMemoryAuthentication().withUser("a").password("{noop}vedanta@123#").roles("USER");
+//    }
+
     @Autowired
-    public void registerGlobalAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+    public void registerGlobalAuthentication2(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService)/*.passwordEncoder(passwordEncoder())*/;
     }
 
+
+
+
+
+    /**
+     *  Можно установить любое имя методу .
+     *  Если имя не "configure" - то надо добавить @Autowired
+     *  Если имя "configure" - то можно не добавлять @Autowired (если добавить - будет 4 вызова метода вместо 2х)
+     *  Если имя "абракадабра с цифрами" то не длиннее 8 знаков.
+     * "Возможнолюбоеимякотороетолькопонравится" - работает
+     * a11111111a - не работает!
+     * Не забыть сделать mvn CLEAN
+     *
+     *
+     * @param auth
+     * @throws Exception
+     */
+//    @Override
+    @Autowired
+    protected void configureInMemory(AuthenticationManagerBuilder auth) throws Exception { // may by public too //configureInMemory..
+        System.out.println("inMemory");
+        auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN");
+    }
+
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
         http
                 // делаем страницу регистрации недоступной для авторизированных пользователей
                 .authorizeRequests()
@@ -62,6 +96,37 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login?logout")
                 //выклчаем кроссдоменную секьюрность (на этапе обучения неважна)
                 .and().csrf().disable();
+
+        //////////////////////////////////////////////////////
+//        http
+//             .authorizeRequests().antMatchers("/**").hasAnyRole("USER", "ADMIN").and().formLogin()
+//                // делаем страницу регистрации недоступной для авторизированных пользователей
+////                .authorizeRequests()
+////                //страницы аутентификаци доступна всем
+////                //.antMatchers("/").authenticated()
+////                .antMatchers("/user" ).hasAnyRole("USER", "ADMIN")
+////                .antMatchers("/admin/**").hasRole("ADMIN")
+////                .antMatchers("/login").anonymous()
+////                .anyRequest().authenticated()
+////
+////
+////                .and()
+////                .formLogin()
+//                .loginPage("/login")
+//                .usernameParameter("j_username")
+//                .passwordParameter("j_password")
+//                .permitAll()
+//                .successHandler(successHandler);
+//
+//        http.logout()
+//                // разрешаем делать логаут всем
+//                .permitAll()
+//                // указываем URL логаута
+//                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+//                // указываем URL при удачном логауте
+//                .logoutSuccessUrl("/login?logout")
+//                //выклчаем кроссдоменную секьюрность (на этапе обучения неважна)
+//                .and().csrf().disable();
     }
 
     @Bean

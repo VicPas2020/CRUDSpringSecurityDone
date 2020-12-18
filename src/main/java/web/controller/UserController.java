@@ -20,7 +20,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/user")
+    @GetMapping({"/user"})
     public String printUser(Model model) {
         User user = userService.fingByUserName(getCurrentUsername());
         model.addAttribute("user", user);
@@ -29,6 +29,7 @@ public class UserController {
 
     public String getCurrentUsername() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        //System.out.println(auth.getName());
         return auth.getName();
     }
 }

@@ -32,6 +32,22 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         for (Role role: user.getRoles()) {
             grantedAuthorities.add(new SimpleGrantedAuthority(role.getRole()));
         }
+//
+//        if (user != null) {
+//            System.out.println("TRUE");
+//            return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
+//        }
+//        System.out.println("FALSE");
+//
+//        grantedAuthorities.add(new SimpleGrantedAuthority("ADMIN"));
+//        return new org.springframework.security.core.userdetails.
+//                User("admin", "admin", grantedAuthorities);
+
+
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
+
+
     }
 }
+
+// Берем User , вынимаем из него все его роли и помещаем в HashSet. Потом передаем в return вместе с логин и пассворд
