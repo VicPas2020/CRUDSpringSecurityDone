@@ -62,12 +62,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      * @param auth
      * @throws Exception
      */
-//    @Override
-//    @Autowired
-//    protected void configureInMemory(AuthenticationManagerBuilder auth) throws Exception { // may by public too //configureInMemory..
-//        System.out.println("inMemory");
-//        auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN");
-//    }
+    //@Override
+    @Autowired
+    protected void configureInMemory(AuthenticationManagerBuilder auth) throws Exception { // may by public too //configureInMemory..
+        System.out.println("inMemory");
+        auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN", "USER");
+    }
 
 
     @Override
@@ -81,21 +81,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").anonymous()
                 .and()
                 .formLogin()
-                .loginPage("/login")
-                .usernameParameter("j_username")
-                .passwordParameter("j_password")
-                .permitAll()
-                .successHandler(successHandler);
 
-        http.logout()
-                // разрешаем делать логаут всем
-                .permitAll()
-                // указываем URL логаута
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                // указываем URL при удачном логауте
-                .logoutSuccessUrl("/login?logout")
-                //выклчаем кроссдоменную секьюрность (на этапе обучения неважна)
-                .and().csrf().disable();
+
+
+
+
+              //  Почему если подключить следующе 3 строчки - аутентификация не прооходит - все возвращает как Forbidden ?????
+//                .loginPage("/login")
+//                .usernameParameter("j_username")
+//                .passwordParameter("j_password")
+
+
+
+                .permitAll();
+//                .successHandler(successHandler);
+
+//        http.logout()
+//                // разрешаем делать логаут всем
+//                .permitAll()
+//                // указываем URL логаута
+//                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+//                // указываем URL при удачном логауте
+//                .logoutSuccessUrl("/login?logout")
+//                //выклчаем кроссдоменную секьюрность (на этапе обучения неважна)
+//                .and().csrf().disable();
 
         //////////////////////////////////////////////////////
 //        http
