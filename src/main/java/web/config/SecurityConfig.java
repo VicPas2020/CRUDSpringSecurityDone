@@ -17,11 +17,11 @@ import web.service.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(securedEnabled = true)
-@ComponentScan(basePackages = {
-        "web.config",
-        "web.service",
-        "web.dao"})
+//@EnableGlobalMethodSecurity(securedEnabled = true)
+//@ComponentScan(basePackages = {
+//        "web.config",
+//        "web.service",
+//        "web.dao"})
 
 //@ComponentScan("web")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -63,11 +63,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      * @throws Exception
      */
 //    @Override
-    @Autowired
-    protected void configureInMemory(AuthenticationManagerBuilder auth) throws Exception { // may by public too //configureInMemory..
-        System.out.println("inMemory");
-        auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN");
-    }
+//    @Autowired
+//    protected void configureInMemory(AuthenticationManagerBuilder auth) throws Exception { // may by public too //configureInMemory..
+//        System.out.println("inMemory");
+//        auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN");
+//    }
 
 
     @Override

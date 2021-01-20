@@ -2,7 +2,6 @@ package web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +21,7 @@ public class UserController {
 
     @GetMapping({"/user"})
     public String printUser(Model model) {
-        User user = userService.fingByUserName(getCurrentUsername());
+        User user = userService.findByUserName(getCurrentUsername());
         model.addAttribute("user", user);
         return "user";
     }

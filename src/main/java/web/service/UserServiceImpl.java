@@ -4,36 +4,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import web.dao.UserDao;
-import web.model.Role;
+import web.dao.UserRepository;
 import web.model.User;
 
-import java.util.Collections;
 import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
-    private UserDao userDao;
+    private UserRepository userDao;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public void setUserDao(UserDao userDao) {
+    public void setUserDao(UserRepository userDao) {
         this.userDao = userDao;
     }
 
     @Override
     @Transactional
     public List<User> listUsers() {
-        return userDao.listUsers();
+        return userDao.findAll();
     }
 
     @Override
     @Transactional
     public void add(User user) {
         //user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userDao.add(user);
+        userDao.save(user);
     }
 
     @Override
@@ -45,13 +43,13 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void edit(User user) {
-        userDao.edit(user);
+        userDao.save(user);
     }
 
     @Override
     public User getById(Long id) {
-        return userDao.getById(id); }
+        return userDao.getOne(id); }
 
     @Override
-    public User fingByUserName(String username) { return userDao.fingByUserName(username); }
+    public User findByUserName(String username) { return userDao.findByUsername(username); }
 }

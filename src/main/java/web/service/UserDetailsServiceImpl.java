@@ -7,7 +7,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import web.model.Role;
 import web.model.User;
 
@@ -26,7 +25,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     //@Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userService.fingByUserName(username);
+        User user = userService.findByUserName(username);
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 
         for (Role role: user.getRoles()) {

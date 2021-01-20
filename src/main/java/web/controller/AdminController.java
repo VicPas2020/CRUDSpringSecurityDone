@@ -30,6 +30,8 @@ public class AdminController {
     public String printUsers(Model model) {
         List<User> userList = userService.listUsers();
         model.addAttribute("users", userList);
+        //System.out.println("USERS!!!!!");
+
         return "users";
     }
 
