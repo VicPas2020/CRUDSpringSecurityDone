@@ -33,17 +33,11 @@ public class SpringbootdemoApplication /*implements CommandLineRunner*/ {
 
 	}
 
-
-
-
-
-
-
 //	@Override
 //	public void run(String... args) throws Exception {
 //
 //		if (args.length > 0 ) {
-//			System.out.println("!!!!!!!!!!!!!!!!!!!!");
+//			System.out.println("!!!!!!!!!!!!!");
 //		}else{
 //			System.out.println("0000000000000");
 //		}
@@ -54,21 +48,21 @@ public class SpringbootdemoApplication /*implements CommandLineRunner*/ {
 	@Bean
 	CommandLineRunner initDatabase__AnyNamePossible_Roles( RoleRepository roleRepository) {
 		return args -> {
-
-			roleRepository.save(new Role(1L, "ROLE_ADMIN"));
-			roleRepository.save(new Role(2L, "ROLE_USER"));
-
+			if (!roleRepository.existsById(1L)) {
+				roleRepository.save(new Role(1L, "ROLE_ADMIN"));
+				roleRepository.save(new Role(2L, "ROLE_USER"));
+			}
 		};
 	}
 	@Order(2)
 	@Bean
-	CommandLineRunner initDatabase__Admin(UserRepository repository ) {
+	CommandLineRunner initDatabase__Admin(UserRepository userRepository ) {
 		return args -> {
-
-			Set<Role> set = new HashSet<>();
-			set.add(new Role(1L, "ROLE_ADMIN"));
-			repository.save(new User("dd", "ddd", 11, "ooo", "000", set));
-
+			if (!userRepository.existsById(1L)) {
+				Set<Role> set = new HashSet<>();
+				set.add(new Role(1L, "ROLE_ADMIN"));
+				userRepository.save(new User("dd", "ddd", 11, "ooo", "000", set));
+			}
 		};
 	}
 

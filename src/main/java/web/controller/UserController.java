@@ -23,6 +23,9 @@ public class UserController {
     public String printUser(Model model) {
         User user = userService.findByUserName(getCurrentUsername());
         model.addAttribute("user", user);
+        //тестовый метод
+//        User byUserAgeImp = userService.findByUserAgeImp(5);
+//        System.out.println(byUserAgeImp);
         return "user";
     }
 

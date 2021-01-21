@@ -14,4 +14,7 @@ public interface UserService {
 
     User findByUserName(String username);
 
+    //тестовый метод
+    User findByUserAgeImp(int i);
+
 }
