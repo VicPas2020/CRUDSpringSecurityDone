@@ -37,7 +37,7 @@ public class EditController {
     }
 
 
-
+    //TODO: проверка на изменение роли последнего Админа (один должен остаться)
     @PostMapping("/edit")
     public String editUser(@ModelAttribute("user") User user,
                            @RequestParam(value = "roleAdmin", required = false) String roleAdmin,
@@ -50,6 +50,10 @@ public class EditController {
         if (roleUser != null) {
             roles.add(roleService.findRoleByRoleName(roleUser));
         }
+        if (roleUser == null && roleAdmin == null) {
+            roles.add(roleService.findRoleByRoleName("ROLE_USER"));
+        }
+
         user.setRoles(roles);
         userService.edit(user);
         return "redirect:/admin/users";

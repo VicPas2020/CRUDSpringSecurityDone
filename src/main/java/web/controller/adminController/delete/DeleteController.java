@@ -26,6 +26,7 @@ public class DeleteController {
         this.roleService = roleService;
     }
 
+    //TODO:  последнего Админа удалять нельзя
 
     @GetMapping("/delete/{id}")
     public String deleteUser(@PathVariable("id") Long id){

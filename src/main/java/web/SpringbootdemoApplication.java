@@ -60,7 +60,7 @@ public class SpringbootdemoApplication /*implements CommandLineRunner*/ {
 	@Bean
 	CommandLineRunner initDatabase__Admin(UserRepository userRepository ) {
 		return args -> {
-			if (!userRepository.existsById(1L)) {
+			if (userRepository.count() == 0   ) {
 				Set<Role> set = new HashSet<>();
 				set.add(new Role(1L, "ROLE_ADMIN"));
 
@@ -68,7 +68,7 @@ public class SpringbootdemoApplication /*implements CommandLineRunner*/ {
 						PasswordEncoderFactories.createDelegatingPasswordEncoder();
 				String encodedPass = passwordEncoder.encode("000");
 
-				userRepository.save(new User("zeroAdmin", "zeroAdmin", 100, "ooo",
+				userRepository.save(new User("adminByDefault", "adminByDefault", 100, "ooo",
 						encodedPass, set));
 			}
 		};

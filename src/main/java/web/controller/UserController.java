@@ -32,7 +32,6 @@ public class UserController {
 
     public String getCurrentUsername() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        //System.out.println(auth.getName());
         return auth.getName();
     }
 }

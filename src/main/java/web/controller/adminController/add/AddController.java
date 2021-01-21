@@ -38,17 +38,25 @@ public class AddController {
 
 
 
-    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
+//    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
+    @PostMapping("/addUser")
     public String addUser(@ModelAttribute("user") User user,
                           @RequestParam(value = "roleAdmin", required = false) String roleAdmin,
                           @RequestParam(value = "roleUser", required = false) String roleUser) {
+
         Set<Role> roles = new HashSet<>();
-        if (roleAdmin != null) {
-            roles.add(roleService.findRoleByRoleName(roleAdmin));
-        }
+
         if (roleUser != null) {
             roles.add(roleService.findRoleByRoleName(roleUser));
         }
+        if (roleAdmin != null) {
+            roles.add(roleService.findRoleByRoleName(roleAdmin));
+        }
+
+        if (roleUser == null && roleAdmin == null) {
+            roles.add(roleService.findRoleByRoleName("ROLE_USER"));
+        }
+
         user.setRoles(roles);
         userService.add(user);
         return "redirect:/admin/users";
