@@ -6,6 +6,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.annotation.Order;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import web.dao.RoleRepository;
 import web.dao.UserRepository;
 import web.model.Role;
@@ -61,7 +63,13 @@ public class SpringbootdemoApplication /*implements CommandLineRunner*/ {
 			if (!userRepository.existsById(1L)) {
 				Set<Role> set = new HashSet<>();
 				set.add(new Role(1L, "ROLE_ADMIN"));
-				userRepository.save(new User("dd", "ddd", 11, "ooo", "000", set));
+
+				PasswordEncoder passwordEncoder =
+						PasswordEncoderFactories.createDelegatingPasswordEncoder();
+				String encodedPass = passwordEncoder.encode("000");
+
+				userRepository.save(new User("zeroAdmin", "zeroAdmin", 100, "ooo",
+						encodedPass, set));
 			}
 		};
 	}

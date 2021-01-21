@@ -9,13 +9,14 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import web.config.handler.LoginSuccessHandler;
 import web.service.UserDetailsServiceImpl;
 
-@Configuration
+//@Configuration
 @EnableWebSecurity
 //@EnableGlobalMethodSecurity(securedEnabled = true)
 //@ComponentScan(basePackages = {
@@ -26,11 +27,11 @@ import web.service.UserDetailsServiceImpl;
 //@ComponentScan("web")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired //  замена на конструктор ломает код - появляется циклическая ссылка
+    private  UserDetailsServiceImpl userDetailsService;
     @Autowired
-    private UserDetailsServiceImpl userDetailsService;
+    private  LoginSuccessHandler successHandler;
 
-    @Autowired
-    private LoginSuccessHandler successHandler;
 
 
 //    @Autowired
@@ -42,11 +43,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void registerGlobalAuthentication2(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService)/*.passwordEncoder(passwordEncoder())*/;
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
-
-
-
 
 
     /**
@@ -59,19 +57,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      * Не забыть сделать mvn CLEAN
      *
      *
-     * @param auth
+     * @param http
      * @throws Exception
      */
 //    @Override
-    @Autowired
-    protected void confasdfadfasdfasdfigure(AuthenticationManagerBuilder auth) throws Exception { // may by public too //configureInMemory..
-        System.out.println("inMemory");
-        auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN", "USER");
-    }
+//    @Autowired
+//    protected void confasdfadfasdfasdfigure(AuthenticationManagerBuilder auth) throws Exception { // may by public too //configureInMemory..
+//        System.out.println("inMemory");
+//        auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN", "USER");
+//    }
 
 
     //@Override
-    protected void configure(HttpSecurity http) throws Exception {
+    public void configure(HttpSecurity http) throws Exception { // protected
         http
                 // делаем страницу регистрации недоступной для авторизированных пользователей
                 .authorizeRequests()
@@ -132,6 +130,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 }
