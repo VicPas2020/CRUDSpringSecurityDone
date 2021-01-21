@@ -62,15 +62,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      * @param auth
      * @throws Exception
      */
-    //@Override
+//    @Override
     @Autowired
-    protected void Возможнолюбоеимякотороетолькопонравится(AuthenticationManagerBuilder auth) throws Exception { // may by public too //configureInMemory..
+    protected void confasdfadfasdfasdfigure(AuthenticationManagerBuilder auth) throws Exception { // may by public too //configureInMemory..
         System.out.println("inMemory");
         auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN", "USER");
     }
 
 
-    @Override
+    //@Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 // делаем страницу регистрации недоступной для авторизированных пользователей

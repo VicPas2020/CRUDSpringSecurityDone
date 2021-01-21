@@ -31,11 +31,18 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
+
+
+
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",
-            joinColumns = {@JoinColumn(name = "users_id")},
-            inverseJoinColumns = {@JoinColumn(name = "roles_id")})
+            joinColumns = {@JoinColumn(name = "id_from_users")},
+            inverseJoinColumns = {@JoinColumn(name = "id_from_roles")})
     private Set<Role> roles;
+
+
+
+
 
     public User() {
     }
@@ -46,22 +53,8 @@ public class User implements UserDetails {
         this.age = age;
     }
 
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
 
-    public User(Long id, String username, String password) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-    }
 
-    public User(String username, String password, Set<Role> roles) {
-        this.username = username;
-        this.password = password;
-        this.roles = roles;
-    }
 
     public User(String name, String surname, int age, String username, String password, Set<Role> roles) {
         this.name = name;
