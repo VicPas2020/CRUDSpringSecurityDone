@@ -12,7 +12,7 @@ public interface UserService {
     void edit(User user);
     User getById(Long id);
 
-    User findByUserName(String username);
+    //User findByUserName(String username);
 
     //тестовый метод
     User findByUserAgeImp(int i);
